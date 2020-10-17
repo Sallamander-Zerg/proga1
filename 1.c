@@ -1,34 +1,31 @@
  #include <stdio.h>
- #include <fcntl.h>
- #include <sys/types.h>
+#include <fcntl.h>
+#include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/mman.h>
 int main()
 {
-        int a;
-	int lm=0;
-	int nm=0;
-     	char line[nm][lm];
-    	FILE *file = fopen("hello.txt","r");
-    while (!feof(file)){
-        fscanf(file,"%[^\n]",&line[nm][lm]);//чаровский массив
-        nm++;
-        if (nm == ('\n')) {  
-         lm+1;
-          }
-        
-          }
-               scanf(a); 
-        if(a==lm)
-          {
-       for (a=lm; a==lm; a++){
-       printf("arr[%d][%d]=",nm,a);
-       scanf("%d", &line[nm][a]);
-          }
-           }else
-          {
-          printf("eror101");
-          }
-          
-       
-    return 0;
+int a;
+int lm=0;
+int nm=0;
+int line[100][100];
+char ch;
+FILE *file = fopen("text.txt","r");
+line[0][0];
+while (read(file, &ch , sizeof(char))>0){
+nm++;
+if (ch == ('\n')) {
+line[lm][0]=nm;
+line[lm-1][1]=nm-line[lm-1][0];
+lm ++;
+}
+
+}
+scanf("%d", &a);
+lseek(file,line[a][0],SEEK_SET);
+for(int i=0;i<line[a][1];i++){
+read(file, &ch , sizeof(char));
+printf("%c",ch);
+}
+return 0;
 }
